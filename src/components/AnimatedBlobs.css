@@ -267,7 +267,7 @@
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .animated-blobs-container {
-    opacity: 0.7;
+    display: none; /* Hide blobs completely on smaller screens */
   }
   
   .blob {
