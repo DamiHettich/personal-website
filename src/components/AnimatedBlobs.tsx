@@ -3,20 +3,12 @@ import './AnimatedBlobs.css';
 
 const AnimatedBlobs: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isWhiteDogSmiling, setIsWhiteDogSmiling] = useState(false);
+  const [yellowDogPosition, setYellowDogPosition] = useState({ x: 0, y: 0 });
+  const [yellowDogVelocity, setYellowDogVelocity] = useState({ x: 0, y: 0 });
+  const animationFrameRef = useRef<number | null>(null);
   const blobsContainerRef = useRef<HTMLDivElement>(null);
-  
-  // Track mouse position
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    
-    window.addEventListener('mousemove', handleMouseMove);
-    
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
+  const yellowDogRef = useRef<HTMLDivElement>(null);
   
   // Calculate pupil position for tracking the cursor
   const calculatePupilPosition = (blobIndex: number) => {
@@ -41,6 +33,160 @@ const AnimatedBlobs: React.FC = () => {
     return { left: `${leftPos}%`, top: `${topPos}%` };
   };
   
+  // Track mouse position and handle dog reactions
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+      
+      // Check proximity to white dog to make it smile
+      if (blobsContainerRef.current) {
+        const whiteDogElement = blobsContainerRef.current.children[0] as HTMLElement;
+        if (whiteDogElement) {
+          const rect = whiteDogElement.getBoundingClientRect();
+          const dogCenterX = rect.left + rect.width / 2;
+          const dogCenterY = rect.top + rect.height / 2;
+          
+          const distance = Math.sqrt(
+            Math.pow(e.clientX - dogCenterX, 2) + 
+            Math.pow(e.clientY - dogCenterY, 2)
+          );
+          
+          setIsWhiteDogSmiling(distance < 150);
+        }
+      }
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
+  
+  // Handle yellow dog fleeing behavior
+  useEffect(() => {
+    // Animation loop for dog movement
+    const animateYellowDog = () => {
+      if (!yellowDogRef.current || !blobsContainerRef.current) {
+        animationFrameRef.current = requestAnimationFrame(animateYellowDog);
+        return;
+      }
+      
+      const yellowDogElement = yellowDogRef.current;
+      const containerRect = blobsContainerRef.current.getBoundingClientRect();
+      const dogRect = yellowDogElement.getBoundingClientRect();
+      
+      // Get the original dog position from its CSS
+      const computedStyle = window.getComputedStyle(yellowDogElement);
+      const originalTop = parseInt(computedStyle.top || '0', 10);
+      const originalRight = parseInt(computedStyle.right || '0', 10);
+      
+      // Calculate distance between cursor and yellow dog
+      const dogCenterX = dogRect.left + dogRect.width / 2;
+      const dogCenterY = dogRect.top + dogRect.height / 2;
+      
+      const distance = Math.sqrt(
+        Math.pow(mousePosition.x - dogCenterX, 2) + 
+        Math.pow(mousePosition.y - dogCenterY, 2)
+      );
+      
+      // Flee if cursor is close
+      if (distance < 200) {
+        // Calculate direction away from cursor
+        const dx = dogCenterX - mousePosition.x;
+        const dy = dogCenterY - mousePosition.y;
+        
+        // Normalize
+        const length = Math.sqrt(dx * dx + dy * dy);
+        const normalizedDx = dx / length;
+        const normalizedDy = dy / length;
+        
+        // Apply fleeing force (stronger when closer)
+        const fleeForce = 4 * (1 - Math.min(1, distance / 200));
+        let newVelocityX = yellowDogVelocity.x + normalizedDx * fleeForce;
+        let newVelocityY = yellowDogVelocity.y + normalizedDy * fleeForce;
+        
+        // Apply damping (friction)
+        newVelocityX *= 0.98;
+        newVelocityY *= 0.98;
+        
+        // Calculate new position
+        let newPositionX = yellowDogPosition.x + newVelocityX;
+        let newPositionY = yellowDogPosition.y + newVelocityY;
+        
+        // Improved boundary constraints for right edge
+        const viewportWidth = window.innerWidth;
+        
+        // Use the viewport width to ensure the dog stays visible on the right
+        const maxX = Math.min(
+          containerRect.width - dogRect.width - originalRight,
+          viewportWidth - dogRect.width - 50 // Ensure at least 50px is visible
+        );
+        
+        // Apply boundaries
+        if (newPositionX > maxX) {
+          newPositionX = maxX;
+          newVelocityX *= -0.5; // Bounce effect
+        }
+        if (newPositionY > containerRect.height - dogRect.height - originalTop) {
+          newPositionY = containerRect.height - dogRect.height - originalTop;
+          newVelocityY *= -0.5; // Bounce effect
+        }
+        if (newPositionX < -originalRight) {
+          newPositionX = -originalRight;
+          newVelocityX *= -0.5; // Bounce effect
+        }
+        if (newPositionY < -originalTop) {
+          newPositionY = -originalTop;
+          newVelocityY *= -0.5; // Bounce effect
+        }
+        
+        // After applying all boundary constraints, add this additional check:
+        // Ensure the dog doesn't go off the right edge of the viewport
+        const dogRightEdge = dogRect.left + dogRect.width + newPositionX - yellowDogPosition.x;
+        
+        if (dogRightEdge > viewportWidth - 10) { // Keep at least 10px visible
+          newPositionX = viewportWidth - 10 - (dogRect.left + dogRect.width - yellowDogPosition.x);
+          newVelocityX *= -0.5; // Bounce effect
+        }
+        
+        // Update state
+        setYellowDogPosition({ x: newPositionX, y: newPositionY });
+        setYellowDogVelocity({ x: newVelocityX, y: newVelocityY });
+      } else {
+        // Just slow down and stop if the cursor is far away
+        if (Math.abs(yellowDogVelocity.x) > 0.1 || Math.abs(yellowDogVelocity.y) > 0.1) {
+          // Apply stronger damping to slow down gradually
+          const newVelocityX = yellowDogVelocity.x * 0.8;
+          const newVelocityY = yellowDogVelocity.y * 0.8;
+          
+          // Calculate new position
+          const newPositionX = yellowDogPosition.x + newVelocityX;
+          const newPositionY = yellowDogPosition.y + newVelocityY;
+          
+          setYellowDogPosition({ x: newPositionX, y: newPositionY });
+          setYellowDogVelocity({ x: newVelocityX, y: newVelocityY });
+        } else if (yellowDogVelocity.x !== 0 || yellowDogVelocity.y !== 0) {
+          // Set velocity to zero when it's very small
+          setYellowDogVelocity({ x: 0, y: 0 });
+        }
+      }
+      
+      animationFrameRef.current = requestAnimationFrame(animateYellowDog);
+    };
+    
+    animationFrameRef.current = requestAnimationFrame(animateYellowDog);
+    
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [mousePosition, yellowDogPosition, yellowDogVelocity]);
+  
   return (
     <div className="animated-blobs-container" ref={blobsContainerRef}>
       {/* White Poodle/Maltese Dog Blob */}
@@ -63,7 +209,7 @@ const AnimatedBlobs: React.FC = () => {
               </div>
             </div>
             <div className="blob-nose"></div>
-            <div className="blob-mouth"></div>
+            <div className={`blob-mouth ${isWhiteDogSmiling ? 'blob-mouth-smile' : ''}`}></div>
             <div className="dog-bone red-bone"></div>
             <div className="dog-ears">
               <div className="dog-ear dog-ear-left white-ear"></div>
@@ -74,7 +220,15 @@ const AnimatedBlobs: React.FC = () => {
       </div>
       
       {/* Yellow Poodle/Maltese Dog Blob */}
-      <div className="blob blob-2 yellow-dog">
+      <div 
+        ref={yellowDogRef}
+        className={`blob blob-2 yellow-dog ${
+          yellowDogPosition.x !== 0 || yellowDogPosition.y !== 0 ? 'is-fleeing' : ''
+        }`} 
+        style={{
+          transform: `translate(${yellowDogPosition.x}px, ${yellowDogPosition.y}px)`,
+        }}
+      >
         <div className="blob-body">
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <path 

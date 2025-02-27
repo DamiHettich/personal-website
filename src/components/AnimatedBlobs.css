@@ -149,6 +149,7 @@
   z-index: 2;
 }
 
+/* Replace the current smiling mouth style with an open mouth + tongue style */
 .blob-mouth {
   width: 30px;
   height: 10px;
@@ -156,6 +157,36 @@
   border-bottom-right-radius: 20px;
   border-bottom: 2px solid black;
   z-index: 2;
+  position: relative;
+}
+
+/* Flat-top open mouth with curved bottom */
+.blob-mouth-smile::before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  background-color: black; /* Black inside mouth */
+  border: 2px solid black;
+  border-radius: 0 0 15px 15px; /* Only round the bottom */
+  border-top: none; /* Remove top border */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+/* Update dog tongue position inside black mouth */
+.blob-mouth-smile::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 18px;
+  background-color: #ff6b81;
+  border-radius: 7px 7px 14px 14px;
+  top: 8px; /* Position it inside the mouth */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
 }
 
 /* Dog ears */
@@ -270,4 +301,15 @@
     width: 30px;
     height: 40px;
   }
+}
+
+/* Make the yellow dog movement smoother */
+.yellow-dog {
+  transition: transform 0.1s linear;
+}
+
+/* Override the default animation for the yellow dog when it's fleeing */
+.yellow-dog.is-fleeing {
+  animation: none !important; /* Stop the float animation */
+  transition: transform 0.1s linear;
 } 
