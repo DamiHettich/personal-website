@@ -22,12 +22,14 @@
   top: 20%;
   right: 10%;
   animation: float1 8s infinite;
+  z-index: 2; /* White dog appears in front */
 }
 
 .blob-2 {
-  top: 55%;
-  right: 15%;
+  top: 45%;
+  right: 8%;
   animation: float2 7s infinite;
+  z-index: 1;
 }
 
 .blob-body {
@@ -58,6 +60,9 @@
   top: 85%;
   z-index: 2;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Create bone knobs on all four corners */
@@ -312,4 +317,38 @@
 .yellow-dog.is-fleeing {
   animation: none !important; /* Stop the float animation */
   transition: transform 0.1s linear;
-} 
+}
+
+/* Scared mouth for yellow dog */
+.blob-mouth-scared {
+  width: 20px;
+  height: 12px;
+  background-color: black;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Worried eyebrows for yellow dog */
+.blob-eyebrows-scared {
+  position: absolute;
+  width: 60%;
+  top: -8px;
+  z-index: 3;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Add text to bones */
+.dog-bone-text {
+  font-size: 6px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+  font-family: sans-serif;
+  letter-spacing: 0.5px;
+  /* Prevent text selection */
+  user-select: none;
+}

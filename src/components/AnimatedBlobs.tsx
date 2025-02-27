@@ -6,6 +6,7 @@ const AnimatedBlobs: React.FC = () => {
   const [isWhiteDogSmiling, setIsWhiteDogSmiling] = useState(false);
   const [yellowDogPosition, setYellowDogPosition] = useState({ x: 0, y: 0 });
   const [yellowDogVelocity, setYellowDogVelocity] = useState({ x: 0, y: 0 });
+  const [isYellowDogScared, setIsYellowDogScared] = useState(false);
   const animationFrameRef = useRef<number | null>(null);
   const blobsContainerRef = useRef<HTMLDivElement>(null);
   const yellowDogRef = useRef<HTMLDivElement>(null);
@@ -52,6 +53,21 @@ const AnimatedBlobs: React.FC = () => {
           );
           
           setIsWhiteDogSmiling(distance < 150);
+        }
+        
+        // Check proximity to yellow dog to make it scared
+        const yellowDogElement = yellowDogRef.current;
+        if (yellowDogElement) {
+          const rect = yellowDogElement.getBoundingClientRect();
+          const dogCenterX = rect.left + rect.width / 2;
+          const dogCenterY = rect.top + rect.height / 2;
+          
+          const distance = Math.sqrt(
+            Math.pow(e.clientX - dogCenterX, 2) + 
+            Math.pow(e.clientY - dogCenterY, 2)
+          );
+          
+          setIsYellowDogScared(distance < 250);
         }
       }
     };
@@ -210,7 +226,9 @@ const AnimatedBlobs: React.FC = () => {
             </div>
             <div className="blob-nose"></div>
             <div className={`blob-mouth ${isWhiteDogSmiling ? 'blob-mouth-smile' : ''}`}></div>
-            <div className="dog-bone red-bone"></div>
+            <div className="dog-bone red-bone">
+              <span className="dog-bone-text">Tomi</span>
+            </div>
             <div className="dog-ears">
               <div className="dog-ear dog-ear-left white-ear"></div>
               <div className="dog-ear dog-ear-right white-ear"></div>
@@ -238,6 +256,9 @@ const AnimatedBlobs: React.FC = () => {
             />
           </svg>
           <div className="blob-face">
+            {isYellowDogScared && (
+              <div className="blob-eyebrows-scared"></div>
+            )}
             <div className="blob-eyes">
               <div className="blob-eye">
                 <div className="blob-pupil" style={calculatePupilPosition(1)}></div>
@@ -247,8 +268,10 @@ const AnimatedBlobs: React.FC = () => {
               </div>
             </div>
             <div className="blob-nose"></div>
-            <div className="blob-mouth"></div>
-            <div className="dog-bone blue-bone"></div>
+            <div className={`blob-mouth ${isYellowDogScared ? 'blob-mouth-scared' : ''}`}></div>
+            <div className="dog-bone blue-bone">
+              <span className="dog-bone-text">Broco</span>
+            </div>
             <div className="dog-ears">
               <div className="dog-ear dog-ear-left yellow-ear"></div>
               <div className="dog-ear dog-ear-right yellow-ear"></div>
