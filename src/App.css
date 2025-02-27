@@ -1,0 +1,113 @@
+@import './styles/global.css';
+
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+:root {
+  --primary-color: #00ff95;
+  --bg-color: #0a0a0a;
+  --text-color: #ffffff;
+  --section-padding: 5rem 2rem;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+.section {
+  padding: var(--section-spacing) 0;
+}
+
+.greeting-section {
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(120deg, #f5f7fa 0%, #e4e9f2 100%);
+}
+
+.about-section {
+  background-color: var(--white);
+}
+
+.projects-section {
+  background-color: var(--gray-100);
+}
+
+.games-section {
+  background-color: var(--white);
+}
+
+.contact-section {
+  background-color: var(--gray-100);
+}
+
+.footer {
+  background-color: var(--text-dark);
+  color: var(--white);
+  padding: var(--spacing-lg) 0;
+  text-align: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 1rem;
+  }
+}

@@ -1,0 +1,122 @@
+.projects-container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+}
+
+.projects-container h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+  position: relative;
+}
+
+.projects-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary-color);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-2xl);
+}
+
+.project-card {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.project-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-info {
+  padding: var(--spacing-xl);
+}
+
+.project-info h3 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-dark);
+}
+
+.project-info p {
+  color: var(--text-medium);
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.6;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-lg);
+}
+
+.tech-tag {
+  background-color: var(--gray-200);
+  color: var(--text-medium);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.project-links {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.project-link {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-fast);
+  text-align: center;
+  flex: 1;
+}
+
+.project-link:first-child {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.project-link:first-child:hover {
+  background-color: var(--primary-dark);
+}
+
+.project-link:last-child {
+  background-color: var(--gray-200);
+  color: var(--text-medium);
+}
+
+.project-link:last-child:hover {
+  background-color: var(--gray-300);
+} 

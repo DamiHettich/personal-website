@@ -1,0 +1,122 @@
+.games-container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+}
+
+.games-container h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+}
+
+.games-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary-color);
+}
+
+.games-intro {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  font-size: var(--font-size-lg);
+  color: var(--text-medium);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-2xl);
+}
+
+.game-card {
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  background-color: var(--white);
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.game-image {
+  height: 180px;
+  overflow: hidden;
+}
+
+.game-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.game-card:hover .game-image img {
+  transform: scale(1.05);
+}
+
+.game-info {
+  padding: var(--spacing-lg);
+}
+
+.game-info h3 {
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-xl);
+  color: var(--text-dark);
+}
+
+.game-info p {
+  color: var(--text-medium);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.5;
+}
+
+.game-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-lg);
+}
+
+.tech-tag {
+  background-color: var(--gray-200);
+  color: var(--text-medium);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.game-links {
+  display: flex;
+  justify-content: center;
+}
+
+.play-button {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color var(--transition-fast);
+  text-align: center;
+  width: 100%;
+}
+
+.play-button:hover {
+  background-color: var(--primary-dark);
+} 

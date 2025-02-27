@@ -1,0 +1,273 @@
+.animated-blobs-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.blob {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.blob-1 {
+  top: 20%;
+  right: 10%;
+  animation: float1 8s infinite;
+}
+
+.blob-2 {
+  top: 55%;
+  right: 15%;
+  animation: float2 7s infinite;
+}
+
+.blob-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.blob-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Improved bone styling with rounded corners on both ends */
+.dog-bone {
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  border-radius: 4px;
+  top: 85%;
+  z-index: 2;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Create bone knobs on all four corners */
+.dog-bone:before, .dog-bone:after {
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.dog-bone:before {
+  /* Left side knobs */
+  box-shadow: 0 9px 0 0; /* Creates the bottom-left knob */
+  left: -2px;
+  top: -2px;
+}
+
+.dog-bone:after {
+  /* Right side knobs */
+  box-shadow: 0 9px 0 0; /* Creates the bottom-right knob */
+  right: -2px;
+  top: -2px;
+}
+
+/* Bone colors */
+.red-bone {
+  background-color: #FF3A3A;
+}
+
+.red-bone:before, .red-bone:after {
+  background-color: #FF3A3A;
+  color: #FF3A3A; /* For the box-shadow color */
+}
+
+.blue-bone {
+  background-color: #3A76FF;
+}
+
+.blue-bone:before, .blue-bone:after {
+  background-color: #3A76FF;
+  color: #3A76FF; /* For the box-shadow color */
+}
+
+
+/* Dog coloring */
+.white-dog svg path {
+  fill: #ffffff;
+}
+
+.yellow-dog svg path {
+  fill: #fff8e1;
+}
+
+.blob-eyes {
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  margin-bottom: 10px;
+  z-index: 2;
+}
+
+.blob-eye {
+  width: 25px;
+  height: 25px;
+  background-color: #333;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.blob-pupil {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: white;
+  border-radius: 50%;
+  top: 30%;
+  left: 30%;
+  transition: all 0.15s ease-out;
+}
+
+.blob-nose {
+  width: 15px;
+  height: 15px;
+  background-color: black;
+  border-radius: 50%;
+  margin-bottom: 5px;
+  z-index: 2;
+}
+
+.blob-mouth {
+  width: 30px;
+  height: 10px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom: 2px solid black;
+  z-index: 2;
+}
+
+/* Dog ears */
+.dog-ears {
+  position: absolute;
+  width: 100%;
+  top: 35px;
+  z-index: -1;
+}
+
+.dog-ear {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  border-radius: 50%;
+  top: -20px;
+}
+
+.dog-ear-left {
+  left: 25px;
+  transform: rotate(-30deg);
+}
+
+.dog-ear-right {
+  right: 25px;
+  transform: rotate(30deg);
+}
+
+.white-ear {
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.yellow-ear {
+  background-color: #fff8e1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes float1 {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes float2 {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(15px) rotate(-5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* Add subtle pulsing animation to blobs */
+.blob svg {
+  animation: pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .animated-blobs-container {
+    opacity: 0.7;
+  }
+  
+  .blob {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .blob-1 {
+    top: auto;
+    bottom: 30%;
+    right: 10%;
+  }
+  
+  .blob-2 {
+    top: auto;
+    bottom: 10%;
+    right: 50%;
+  }
+  
+  .blob-eye {
+    width: 15px;
+    height: 15px;
+  }
+  
+  .blob-pupil {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .dog-ear {
+    width: 30px;
+    height: 40px;
+  }
+} 
