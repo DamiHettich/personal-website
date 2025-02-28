@@ -16,26 +16,34 @@ const Projects: React.FC = () => {
   
   const projects: ProjectProps[] = [
     {
-      title: 'E-commerce Platform',
-      description: 'A fully responsive e-commerce platform with product catalog, shopping cart, and secure checkout. This project demonstrates my ability to create complex, interactive web applications with modern technologies. The platform includes user authentication, product filtering, and payment processing integration.',
+      title: 'Club Zada App',
+      description: 'A fully responsive sports management app for managing trainings, players, and payments for a volleyball club in Chile. It also allows for centralized management of training schedules, player information and make payments through the app. It serves as a communication tool between the club and its players.',
       imageUrl: '/images/image.png',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Redux', 'Express'],
+      technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'TailwindCSS'],
       liveUrl: 'https://example.com/project1',
       githubUrl: 'https://github.com/yourusername/project1'
     },
     {
-      title: 'Task Management App',
-      description: 'A productivity app for managing tasks with drag-and-drop functionality and team collaboration features. This application helps teams organize their workflow with customizable boards, task assignments, and progress tracking. It includes real-time updates and notifications to keep everyone in sync.',
-      imageUrl: '/images/project-2.jpg',
-      technologies: ['React', 'TypeScript', 'Firebase', 'Material UI', 'React DnD'],
+      title: 'MARIA: Irrigation Control',
+      description: 'A web application that allows for the management of irrigation systems in Chile. It allows for the monitoring of irrigation systems, forecasting future needs and planning irrigation schedules. It also has near-real-time data syncing with other platforms like Wiseconn and Agroclima, allowing for a whole-farm approach to irrigation management.',
+      imageUrl: '/images/image.png',
+      technologies: ['Django', 'AJAX', 'PostgreSQL', 'Bootstrap', 'AWS'],
       liveUrl: 'https://example.com/project2',
       githubUrl: 'https://github.com/yourusername/project2'
     },
     {
-      title: 'Weather Dashboard',
-      description: 'A weather application that provides real-time forecasts and historical weather data for any location. This dashboard visualizes weather patterns with interactive charts and maps. Users can save favorite locations and receive alerts for severe weather conditions in their area.',
-      imageUrl: '/images/project-3.jpg',
-      technologies: ['JavaScript', 'API Integration', 'Chart.js', 'CSS Grid', 'Geolocation API'],
+      title: 'Real-estate post-sales platform',
+      description: 'Inherited a badly coded platform and refactored it to work. The platform allows for users to manage their real-estate portfolio and track the status of their properties, allowing them to communicate with their executives and make post-sales guarantee claims. It also functions as a project management tool for the executives to track the status of the projects.',
+      imageUrl: '/images/image.png',
+      technologies: ['React', 'Express', 'Material UI'],
+      liveUrl: 'https://example.com/project3',
+      githubUrl: 'https://github.com/yourusername/project3'
+    },
+    {
+      title: 'RAG based web chatbot',
+      description: 'Created a full-stack web chatbot using Node.js, Express, MongoDB and Gemini API. The chatbot uses a Langgraph workflow to manage RAG and LLM chain calls so as to answer questions about specific business documents. It relies on a vector database to store the embeddings of the documents and a graph database to store the relationships between the entities in the documents.',
+      imageUrl: '/images/image.png',
+      technologies: ['React', 'TailwindCSS', 'Express', 'MongoDB', 'Langgraph'],
       liveUrl: 'https://example.com/project3',
       githubUrl: 'https://github.com/yourusername/project3'
     }

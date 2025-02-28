@@ -15,23 +15,23 @@ const AboutMe: React.FC = () => {
   
   const mainCertifications: Certification[] = [
     {
-      title: "AWS Certified Cloud Practitioner",
+      title: "Certified Cloud Practitioner",
       issuer: "Amazon Web Services",
-      date: "2023",
+      date: "2024",
       image: "/certifications/aws-cloud-practitioner.png",
       link: "https://www.credly.com/badges/your-badge-id"
     },
     {
-      title: "Google Cloud Associate Cloud Engineer",
-      issuer: "Google Cloud",
-      date: "2022",
+      title: "Associate Cloud Engineer",
+      issuer: "Google Cloud Platform",
+      date: "2025",
       image: "/certifications/gcp-ace.png",
       link: "https://www.credential.net/your-credential-id"
     },
     {
       title: "Google Cloud Professional Machine Learning Engineer",
-      issuer: "Google Cloud",
-      date: "2023",
+      issuer: "Google Cloud Platform",
+      date: "2024",
       image: "/certifications/gcp-ml-engineer.png",
       link: "https://www.credential.net/your-credential-id"
     }

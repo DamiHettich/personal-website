@@ -51,18 +51,14 @@ const Contact: React.FC = () => {
       <div className="contact-content">
         <div className="contact-info">
           <p>
-            I'm always open to new opportunities and collaborations. Feel free to reach out!
+            I'm always open to talk about just about anything. Feel free to reach out!
           </p>
           <div className="contact-links">
-            <a href="mailto:your.email@example.com" className="contact-link">
-              <i className="fas fa-envelope"></i>
-              <span>your.email@example.com</span>
-            </a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="contact-link">
+            <a href="https://www.linkedin.com/in/damianhettich/" target="_blank" rel="noopener noreferrer" className="contact-link">
               <i className="fab fa-linkedin"></i>
               <span>LinkedIn</span>
             </a>
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="contact-link">
+            <a href="https://github.com/DamiHettich" target="_blank" rel="noopener noreferrer" className="contact-link">
               <i className="fab fa-github"></i>
               <span>GitHub</span>
             </a>
