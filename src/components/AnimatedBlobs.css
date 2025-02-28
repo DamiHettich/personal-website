@@ -255,10 +255,7 @@
   }
 }
 
-/* Add subtle pulsing animation to blobs */
-.blob svg {
-  animation: pulse 4s ease-in-out infinite alternate;
-}
+
 
 @keyframes pulse {
   0% {
@@ -341,7 +338,7 @@
 
 /* Add text to bones */
 .dog-bone-text {
-  font-size: 6px;
+  font-size: 5px;
   font-weight: bold;
   color: white;
   text-align: center;
