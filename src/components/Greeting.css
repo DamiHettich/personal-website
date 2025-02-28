@@ -124,4 +124,17 @@
     flex-direction: column;
     gap: var(--spacing-sm);
   }
-} 
+}
+
+.typing-text {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  background-color: var(--text-dark);
+  margin-left: 2px;
+}
+ 
