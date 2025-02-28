@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './Games.css'
 
@@ -7,7 +7,6 @@ interface GameCardProps {
   description: string
   imageUrl: string
   gameUrl: string
-  technologies: string[]
 }
 
 const GameCard: React.FC<GameCardProps> = ({
@@ -35,47 +34,74 @@ const GameCard: React.FC<GameCardProps> = ({
 }
 
 const Games: React.FC = () => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  };
+  
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
+
   const games = [
     {
-      title: 'Snake Game',
-      description: 'A classic Snake game where you control a snake to eat food and grow longer without hitting the walls or yourself.',
-      imageUrl: '/images/snake-game.jpg',
-      gameUrl: '/games/snake',
-      technologies: ['React', 'TypeScript', 'Canvas API']
-    },
-    {
       title: 'Minesweeper',
-      description: 'The classic Minesweeper game where you need to clear a board containing hidden mines without detonating any of them.',
+      description: 'The classic Minesweeper game where you need to find all hidden mines. Be careful with them!',
       imageUrl: '/images/minesweeper.jpg',
-      gameUrl: '/games/minesweeper',
-      technologies: ['React', 'TypeScript', 'CSS Grid']
+      gameUrl: '/games/minesweeper'
     },
     {
-      title: 'Tetris',
-      description: 'A recreation of the popular Tetris game where you arrange falling blocks to create complete lines.',
+      title: 'Jumping Dino',
+      description: 'Just your usual jumping game. The difference is that now you do have a stable internet connection.',
       imageUrl: '/images/tetris.jpg',
-      gameUrl: '/games/tetris',
-      technologies: ['React', 'TypeScript', 'CSS Animations']
+      gameUrl: '/games/tetris'
     },
     {
-      title: 'Memory Match',
-      description: 'A memory card game where you need to find matching pairs of cards in the fewest moves possible.',
-      imageUrl: '/images/memory-match.jpg',
-      gameUrl: '/games/memory-match',
-      technologies: ['React', 'TypeScript', 'CSS Transitions']
-    }
+      title: 'Skiing Game',
+      description: 'A game I used to play back in the day. Escape the monster as long as you can avoid the trees.',
+      imageUrl: '/images/skiing.jpg',
+      gameUrl: '/games/the-skiing-game'
+    },
+    // {
+    //   title: 'Snake',
+    //   description: 'Remembering old nokias, you are a snake that grows as long as possible without harming yourself.',
+    //   imageUrl: '/images/snake-game.jpg',
+    //   gameUrl: '/games/snake'
+    // },
+    // {
+    //   title: 'Tetris',
+    //   description: 'A recreation of the popular Tetris game where you arrange falling blocks to create complete lines.',
+    //   imageUrl: '/images/tetris.jpg',
+    //   gameUrl: '/games/tetris'
+    // }
   ]
 
   return (
     <div className="container games-container">
       <h2>Games</h2>
       <p className="games-intro">
-        Check out these browser games I've built! Click on any game to play it directly in your browser.
+        If you got this far, you must be bored. You can have fun with these games I built!
       </p>
-      <div className="games-grid">
-        {games.map((game, index) => (
-          <GameCard key={index} {...game} />
-        ))}
+      
+      <div className="games-carousel-container">
+        <button className="scroll-button left" onClick={scrollLeft}>
+          <i className="fas fa-chevron-left"></i>
+        </button>
+        
+        <div className="games-carousel" ref={scrollContainerRef}>
+          {games.map((game, index) => (
+            <GameCard key={index} {...game} />
+          ))}
+        </div>
+        
+        <button className="scroll-button right" onClick={scrollRight}>
+          <i className="fas fa-chevron-right"></i>
+        </button>
       </div>
     </div>
   )
