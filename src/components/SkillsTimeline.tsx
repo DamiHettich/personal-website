@@ -12,20 +12,6 @@ interface Skill {
 const SkillsTimeline: React.FC = () => {
   const skills: Skill[] = [
     {
-      year: '2010',
-      title: 'Flight Simulator Addons',
-      description: 'I started by creating custom airports for FSX and FS9, and meddling with the game files.',
-      technologies: ['GMAX', 'XML', 'C++'],
-      position: 'bottom'
-    },
-    {
-      year: '2014',
-      title: 'Universidad de Chile',
-      description: 'I began studying Engineering in the University of Chile, later switching to Industrial Engineering.',
-      technologies: ['Business','Entrepreneurship','Math', 'Statistics', 'CS'],
-      position: 'top'
-    },
-    {
       year: '2018',
       title: 'Started programming',
       description: 'Doing a lot of Python for my classes, started getting into general programming.',
@@ -34,14 +20,14 @@ const SkillsTimeline: React.FC = () => {
     },
     {
       year: '2021',
-      title: 'First production code',
-      description: 'I developed a model to predict future irrigation needs for farms, and sold it to a consulting company.',
+      title: 'My first solution',
+      description: 'I developed a model to predict future irrigation needs for farms, and sold it to an agricultural consulting company.',
       technologies: ['Python','Pandas','Sklearn'],
       position: 'top'
     },
     {
       year: '2021',
-      title: 'Sold my first web app',
+      title: 'Developed maria.ag',
       description: 'Managed to wrap the irrigation model into a web application and deployed it in AWS.',
       technologies: ['Django','AJAX','AWS'],
       position: 'top'
@@ -49,20 +35,20 @@ const SkillsTimeline: React.FC = () => {
     {
       year: '2022',
       title: 'Hired as a Data Engineer',
-      description: 'I got hired as a Data Engineer in a consulting company, where I began to deepen my knowledge.',
-      technologies: [],
+      description: 'I got hired as a Data Engineer, and started to work with big data technologies and DataScience tools.',
+      technologies: ['Cloud Computing','ETLs','BigData'],
       position: 'bottom'
     },
     {
       year: '2023-2024',
       title: 'Cloud & MLOps',
       description: 'Gained expertise in cloud services and MLOps practices.',
-      technologies: ['GCP', 'Docker', 'CI/CD'],
+      technologies: ['MLOps', 'Docker', 'CI/CD'],
       position: 'top'
     },
     {
       year: '2023-2025',
-      title: 'Full-Stack Web Dev',
+      title: 'Full-Stack Journey',
       description: 'Developed several web applications using modern JS stacks',
       technologies: ['Express','React','MongoDB'],
       position: 'top'
@@ -70,8 +56,8 @@ const SkillsTimeline: React.FC = () => {
     {
       year: '2024-2025',
       title: 'GenerativeAI',
-      description: 'Worked on several projects using LLMs and RAG, and started to get into the field of GenerativeAI.',
-      technologies: ['GenAI','LLMs','RAG'],
+      description: 'Worked on several projects using GenAI, and started to get into the more complex solutions.',
+      technologies: ['GenAI','LangGraph','RAG'],
       position: 'bottom'
     }
   ];
