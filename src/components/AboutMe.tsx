@@ -9,7 +9,7 @@ interface Certification {
   image: string;
 }
 
-const AboutMe = forwardRef<HTMLDivElement>((props, ref) => {
+const AboutMe = forwardRef<HTMLDivElement>((_props, ref) => {
   const [visibleAdditionalCount, setVisibleAdditionalCount] = useState(0);
   const batchSize = 3;
   
