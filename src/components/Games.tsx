@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import { Link } from 'react-router-dom'
 import './Games.css'
 
 interface GameCardProps {
@@ -16,7 +15,13 @@ const GameCard: React.FC<GameCardProps> = ({
   gameUrl
 }) => {
   return (
-    <div className="card game-card fade-in">
+    <a
+      href={gameUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="card game-card fade-in"
+      aria-label={`Play ${title} (opens in new tab)`}
+    >
       <div className="game-image">
         <img src={imageUrl} alt={title} />
       </div>
@@ -24,12 +29,12 @@ const GameCard: React.FC<GameCardProps> = ({
         <h3>{title}</h3>
         <p>{description}</p>
         <div className="game-links">
-          <Link to={gameUrl} className="button button-primary play-button">
-            Play Game
-          </Link>
+          <span className="button button-primary play-button">
+            Play !
+          </span>
         </div>
       </div>
-    </div>
+    </a>
   )
 }
 
@@ -50,22 +55,22 @@ const Games: React.FC = () => {
 
   const games = [
     {
-      title: 'Minesweeper',
-      description: 'The classic Minesweeper game where you need to find all hidden mines. Be careful with them!',
-      imageUrl: '/images/minesweeper.jpg',
-      gameUrl: '/games/minesweeper'
-    },
-    {
       title: 'Jumping Dino',
       description: 'Just your usual jumping game. The difference is that now you do have a stable internet connection.',
-      imageUrl: '/images/tetris.jpg',
-      gameUrl: '/games/tetris'
+      imageUrl: '/games/dinosaur.png',
+      gameUrl: 'https://running-dino.vercel.app/'
     },
     {
       title: 'Skiing Game',
       description: 'A game I used to play back in the day. Escape the monster as long as you can avoid the trees.',
-      imageUrl: '/images/skiing.jpg',
-      gameUrl: '/games/the-skiing-game'
+      imageUrl: '/games/skiing.png',
+      gameUrl: 'https://the-skiing-mountain.vercel.app/'
+    },
+    {
+      title: 'Minesweeper',
+      description: 'The classic Minesweeper game where you need to find all hidden mines. Be careful with them!',
+      imageUrl: '/games/minesweeper.png',
+      gameUrl: 'https://minesweeper-ecru-nine.vercel.app/'
     },
     // {
     //   title: 'Snake',
