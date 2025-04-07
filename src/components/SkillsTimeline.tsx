@@ -35,22 +35,22 @@ const SkillsTimeline: React.FC = () => {
     {
       year: '2022',
       title: 'Hired as a Data Engineer',
-      description: 'I got hired as a Data Engineer, and started to work with big data technologies and DataScience tools.',
-      technologies: ['Cloud Computing','ETLs','BigData'],
+      description: 'I got hired as a Data Engineer, and started to work with big data and DataScience teams.',
+      technologies: ['Cloud','ETLs','SQL'],
       position: 'bottom'
+    },
+    {
+      year: '2022-2025',
+      title: 'Full-Stack Journey',
+      description: 'Developed several web applications using modern JS stacks',
+      technologies: ['Express','React','MongoDB'],
+      position: 'top'
     },
     {
       year: '2023-2024',
       title: 'Cloud & MLOps',
       description: 'Gained expertise in cloud services and MLOps practices.',
       technologies: ['MLOps', 'Docker', 'CI/CD'],
-      position: 'top'
-    },
-    {
-      year: '2023-2025',
-      title: 'Full-Stack Journey',
-      description: 'Developed several web applications using modern JS stacks',
-      technologies: ['Express','React','MongoDB'],
       position: 'top'
     },
     {
