@@ -178,7 +178,7 @@ const AboutMe = forwardRef<HTMLDivElement>((props, ref) => {
               <div className="skill-category">
                 <h4>Cloud & DevOps</h4>
                 <ul>
-                  <li>AWS/GCP/Azure</li>
+                  <li>AWS/GCP</li>
                   <li>Terraform/Pulumi</li>
                   <li>CI/CD DevOps</li>
                   <li>Docker/Kubernetes</li>
