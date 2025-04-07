@@ -18,34 +18,32 @@ const Projects: React.FC = () => {
     {
       title: 'Club Zada App',
       description: 'A fully responsive sports management app for managing trainings, players, and payments for a volleyball club in Chile. It also allows for centralized management of training schedules, player information and make payments through the app. It serves as a communication tool between the club and its players.',
-      imageUrl: '/images/image.png',
+      imageUrl: '/images/clubzada.png',
       technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'TailwindCSS'],
-      liveUrl: 'https://example.com/project1',
-      githubUrl: 'https://github.com/yourusername/project1'
+      liveUrl: 'https://clubzada.com',
+      //githubUrl: 'https://github.com/yourusername/project1'
     },
     {
       title: 'MARIA: Irrigation Control',
       description: 'A web application that allows for the management of irrigation systems in Chile. It allows for the monitoring of irrigation systems, forecasting future needs and planning irrigation schedules. It also has near-real-time data syncing with other platforms like Wiseconn and Agroclima, allowing for a whole-farm approach to irrigation management.',
-      imageUrl: '/images/image.png',
+      imageUrl: '/images/maria.png',
       technologies: ['Django', 'AJAX', 'PostgreSQL', 'Bootstrap', 'AWS'],
-      liveUrl: 'https://example.com/project2',
-      githubUrl: 'https://github.com/yourusername/project2'
+      liveUrl: 'https://maria.ag',
+      //githubUrl: 'https://github.com/yourusername/project2'
     },
     {
-      title: 'Real-estate post-sales platform',
+      title: 'Real-estate post-sales',
       description: 'Inherited a badly coded platform and refactored it to work. The platform allows for users to manage their real-estate portfolio and track the status of their properties, allowing them to communicate with their executives and make post-sales guarantee claims. It also functions as a project management tool for the executives to track the status of the projects.',
-      imageUrl: '/images/image.png',
+      imageUrl: '/images/socovesa.png',
       technologies: ['React', 'Express', 'Material UI'],
-      liveUrl: 'https://example.com/project3',
-      githubUrl: 'https://github.com/yourusername/project3'
+      liveUrl: 'https://mi.almagro.cl',
     },
     {
       title: 'RAG based web chatbot',
-      description: 'Created a full-stack web chatbot using Node.js, Express, MongoDB and Gemini API. The chatbot uses a Langgraph workflow to manage RAG and LLM chain calls so as to answer questions about specific business documents. It relies on a vector database to store the embeddings of the documents and a graph database to store the relationships between the entities in the documents.',
-      imageUrl: '/images/image.png',
-      technologies: ['React', 'TailwindCSS', 'Express', 'MongoDB', 'Langgraph'],
-      liveUrl: 'https://example.com/project3',
-      githubUrl: 'https://github.com/yourusername/project3'
+      description: 'The chatbot uses a Langgraph workflow to manage RAG and LLM chain calls so as to answer questions about specific business documents. It connects different agents to manage the conversation for each of the company\'s use cases. It relies on embedded vectors to store documents and a factory approach to create and manage the agents.',
+      imageUrl: '/images/spinx.png',
+      technologies: ['React', 'Express', 'MongoDB', 'Langgraph'],
+      //liveUrl: 'https://example.com/project3'
     }
   ];
 
@@ -118,7 +116,7 @@ const Projects: React.FC = () => {
               <p className="project-description">{projects[activeProject].description}</p>
               
               <div className="project-links">
-                {projects[activeProject].liveUrl && (
+                {projects[activeProject].liveUrl ? (
                   <a 
                     href={projects[activeProject].liveUrl} 
                     target="_blank" 
@@ -127,6 +125,10 @@ const Projects: React.FC = () => {
                   >
                     <i className="fas fa-external-link-alt"></i> Live Demo
                   </a>
+                ) : (
+                  <span className="button button-primary button-disabled" aria-disabled="true">
+                    <i className="fas fa-external-link-alt"></i> Live Demo
+                  </span>
                 )}
                 {projects[activeProject].githubUrl && (
                   <a 
